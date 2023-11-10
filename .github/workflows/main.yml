@@ -12,15 +12,6 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-    - name: Prevent multiple jobs running in parallel
-      id: conversion_lock
-      uses: beckermr/turnstyle-python@v1
-      with:
-        abort-after-seconds: 3
-        poll-interval-seconds: 2
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-      continue-on-error: true
-
     - uses: actions/checkout@v2
 
     - name: fast finish
