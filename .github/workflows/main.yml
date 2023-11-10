@@ -50,6 +50,16 @@ jobs:
         app_id: ${{ secrets.CF_CURATOR_APP_ID }}
         private_key: ${{ secrets.CF_CURATOR_PRIVATE_KEY }}
 
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+      with:
+        limit-access-to-actor: true
+      env:
+        CIRUN_API_KEY: ${{ secrets.CIRUN_API_KEY }}
+        GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+        GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+        CIRUN_INSTALLATION_ID: ${{ secrets.CIRUN_INSTALLATION_ID }}
+
     - name: Grant/Revoke access to resources
       shell: bash -el {0}
       run: |
